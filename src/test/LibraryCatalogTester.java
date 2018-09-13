@@ -123,6 +123,7 @@ public class LibraryCatalogTester {
     public void testAddBooksFromFile() {
         lc.addBooksFromFile("input/books5.csv");
         String studentResult = lc.toString();
+        System.out.println(studentResult);
         String expectedResult = "(The Hunger Games, Suzanne Collins, 2008, 4.34)" + System.lineSeparator() +
 
         "(Harry Potter and the Philosopher's Stone, J.K. Rowling, 1997, 4.44)" + System.lineSeparator() +
@@ -130,8 +131,15 @@ public class LibraryCatalogTester {
         "(To Kill a Mockingbird, Harper Lee, 1960, 4.25)" + System.lineSeparator() +
         "(The Great Gatsby, F. Scott Fitzgerald, 1925, 3.89)" + System.lineSeparator();
 
+        System.out.println(expectedResult);
+
+
         assertTrue("After loading books from books5.csv, the result returned by toString method of LibraryCatalog does not match the expected result", studentResult.equals(expectedResult));
+
     }
+
+
+
 
     /** Tests getAvailableBooks method. Makes sure it shows only the books
      *  that are not checked out.
