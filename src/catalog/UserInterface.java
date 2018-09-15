@@ -31,47 +31,55 @@ public class UserInterface {
 
         String repeat;
 
-        System.out.println("To check out a book, enter 1");
-        System.out.println("To return a book, enter 2");
-        System.out.println("To see a list of books currently available, enter 3");
-        System.out.println("To exit, enter 4");
 
         boolean checkedOut;
+        boolean returned;
 
 
         // figure out how to say if book with title available or not
         // do same for return book - success message?
 
- String selection;
+        String selection;
         do {
+            for (int i = 0; i < lc.books.size(); i++) {
+                System.out.println(lc.books.get(i));
+            }
+            System.out.println("  ");
+            System.out.println("To check out a book, enter 1");
+            System.out.println("To return a book, enter 2");
+            System.out.println("To see a list of books currently available, enter 3");
+            System.out.println("To exit, enter 4");
+
+
             repeat = input.nextLine();
             if (repeat.equals("1")) {
                 System.out.println("Type in the title you'd like to check out then press 'Enter': ");
                 selection = input.nextLine();
                 checkedOut = lc.checkoutBook(selection);
-                if (checkedOut == true){
-                    System.out.println("Success!");
-                }
-                else{
-                    System.out.println("Unavailable, sorry.");
+                if (checkedOut == true) {
+                    System.out.println("You have successfully checked out " + "\"" + selection + "\"");
+
+                } else {
+                    System.out.println("Sorry, this title is currently unavailable.");
                 }
 
-            }
-            else if (repeat.equals("2")) {
-                System.out.println("Type in the title of your book then press 'Enter'. If it is currently checked out, it will be returned.");
+            } else if (repeat.equals("2")) {
+                System.out.println("Type in the title of the book you'd like to return then press 'Enter'. If it is currently checked out, it will be returned.");
                 selection = input.nextLine();
-                lc.returnBook(selection);
-            }
-            else if (repeat.equals("3")) {
+                returned = lc.returnBook(selection);
+                if (returned == true) {
+                    System.out.println("You have successfully returned " + "\"" + selection + "\"");
+                } else {
+                    System.out.println("This title is not currently checked out.");
+                }
+            } else if (repeat.equals("3")) {
                 System.out.println(lc.getAvailableBooks());
-            }
-
-
-
-            else if (repeat.equals("4")){
+            } else if (repeat.equals("4")) {
                 System.out.println("Program exited.");
                 break;
             }
+
+            System.out.println("--------------------------------------------------------");
         } while (!repeat.equals("4"));
 
         // If the user enters 1, ask for the title, and if the book is available,
